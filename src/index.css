@@ -1,0 +1,228 @@
+@import url("https://fonts.googleapis.com/css2?family=Coiny&family=Sono:wght@400;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #292524;
+  padding: 4rem;
+  color: #fafaf9;
+  font-family: "Sono", sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+h1 {
+  font-family: "Coiny", cursive;
+  font-size: 4.2rem;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  margin-top: 0.6rem;
+}
+
+.container {
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.logo img {
+  width: 68px;
+  height: 68px;
+}
+
+.fact-form {
+  background-color: #44403c;
+  margin-bottom: 4rem;
+  padding: 1.6rem 4rem;
+  border-radius: 2rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+}
+.fact-form input,
+.fact-form select {
+  background-color: #78716c;
+  border: none;
+  border-radius: 5rem;
+  padding: 1.6rem 3rem;
+  color: inherit;
+  font-size: 1.8rem;
+  font-family: inherit;
+  text-overflow: ellipsis;
+}
+.fact-form input::placeholder {
+  color: #a8a29e;
+  font-family: inherit;
+  font-size: 1.3rem;
+}
+.fact-form input:first-child {
+  flex-grow: 1;
+}
+.fact-form span {
+  font-weight: 600;
+  font-size: 1.8rem;
+  margin-right: 1.8rem;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 25rem 1fr;
+  gap: 4.8rem;
+}
+
+.fact {
+  background-color: #44403c;
+  margin-bottom: 1.6rem;
+  padding: 1.6rem 3rem;
+  font-size: 2rem;
+  line-height: 1.4;
+  letter-spacing: -0.1rem;
+  border-radius: 2rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.source:link,
+.source:visited {
+  text-decoration: none;
+  color: #a8a29e;
+  margin-left: 1.5rem;
+  transition: all 0.3s ease-in-out;
+}
+.source:hover,
+.source:active {
+  color: #3b82f6;
+}
+
+.vote-btns {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0.6rem;
+}
+
+.vote-btn {
+  border: none;
+  background-color: #57534e;
+  color: inherit;
+  font-weight: 600;
+  padding: 0.3rem 1rem;
+  margin: 0.2rem;
+  border-radius: 5rem;
+  transition: all 0.3s ease-in-out;
+}
+.vote-btn:hover {
+  cursor: pointer;
+  background-color: #292524;
+}
+
+.tag {
+  color: #fafaf9;
+  font-family: "Coiny", sans-serif;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  padding: 0.3rem 1rem 0 1rem;
+  border-radius: 5rem;
+}
+
+.category {
+  margin-bottom: 1.6rem;
+}
+.btn {
+  border: none;
+  border-radius: 5rem;
+  color: inherit;
+  font-family: "Coiny", sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: 1.7rem;
+  padding: 1.6rem 0 1.3rem;
+  background-image: linear-gradient(135deg, #3b82f6, #16a34a, #ef4444, #8b5cf6);
+  transition: all 0.3s ease-in-out;
+}
+.btn:hover {
+  cursor: pointer;
+  transform: scale(1.1) rotate(-2deg);
+}
+
+.btn-large {
+  padding: 2rem 3.2rem 1.7rem;
+  font-size: 2.4rem;
+}
+.btn-all {
+  margin-bottom: 1.6rem;
+  width: 100%;
+}
+
+.btn-category {
+  width: 100%;
+  background-image: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 1200px) {
+  .fact {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  body {
+    padding: 3.2rem 3rem;
+  }
+  .fact-form {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.5rem 1rem;
+  }
+  .fact-form input,
+  .fact-form select {
+    width: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+}
