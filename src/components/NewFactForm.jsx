@@ -1,24 +1,51 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { addNewFact } from "../api/facts.api";
 import { categoriesAtom, newFactAtom, showFormAtom } from "../recoil/facts.atom";
 
 const NewFactForm = () => {
+  const queryClient = useQueryClient();
   const [newFact, setNewFact] = useRecoilState(newFactAtom);
   const CATEGORIES = useRecoilValue(categoriesAtom);
   const setShowForm = useSetRecoilState(showFormAtom);
 
-  //TODO useMutation hook to add new fact to DB and update cache
+  const addNewFactMutation = useMutation(addNewFact, {
+    onSuccess: (data) => {
+      console.log("new facts", data);
+      queryClient.refetchQueries(["facts"]);
+      setNewFact({
+        text: "",
+        source: "",
+        category: "",
+      });
+      setShowForm(false);
+    },
+  });
+
+  const isValidHttpUrl = (source) => {
+    let url;
+    try {
+      url = new URL(source.trim());
+    } catch (_) {
+      return false;
+    }
+    return url.protocol === "http:" || url.protocol === "https:";
+  };
 
   const handleOnFormSubmit = (e) => {
     e.preventDefault();
-    console.log(newFact);
-    setNewFact({
-      text: "",
-      source: "",
-      category: "",
-      remainingChars: 200,
-    });
-    setShowForm(false);
+    if (
+      newFact.text &&
+      newFact.text.length <= 200 &&
+      newFact.source &&
+      isValidHttpUrl(newFact.source) &&
+      newFact.category
+    ) {
+      addNewFactMutation.mutate({
+        ...newFact,
+      });
+    }
   };
 
   return (
@@ -33,12 +60,11 @@ const NewFactForm = () => {
           setNewFact({
             ...newFact,
             text: e.target.value,
-            remainingChars: 200 - e.target.value.length,
           })
         }
       />
       <span className="remaining-chars" id="char-count">
-        {newFact.remainingChars}
+        {200 - newFact.text.length}
       </span>
       <input
         type="text"
@@ -70,8 +96,19 @@ const NewFactForm = () => {
         ))}
       </select>
 
-      <button className="btn btn-large" id="submit-fact" type="submit">
-        Post
+      <button
+        className={`btn btn-large `}
+        id="submit-fact"
+        type="submit"
+        style={{
+          cursor: addNewFactMutation.isLoading ? "not-allowed" : "pointer",
+          backgroundImage: addNewFactMutation.isLoading && "none",
+          transform: addNewFactMutation.isLoading && "none",
+          backgroundColor: addNewFactMutation.isLoading && "#a5b4fc",
+        }}
+        disabled={addNewFactMutation.isLoading}
+      >
+        {addNewFactMutation.isLoading ? "Processing" : "Post"}
       </button>
     </form>
   );

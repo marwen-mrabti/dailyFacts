@@ -16,9 +16,9 @@ export const initialFacts = [
     source: "https://opensource.fb.com/",
     category: "technology",
     votesInteresting: 24,
-    votesMindblowing: 9,
+    votesMindBlowing: 9,
     votesFalse: 4,
-    createdIn: 2021,
+    created_at: 2021,
   },
   {
     id: 2,
@@ -27,9 +27,9 @@ export const initialFacts = [
       "https://www.mother.ly/parenting/millennial-dads-spend-more-time-with-their-kids",
     category: "society",
     votesInteresting: 11,
-    votesMindblowing: 2,
+    votesMindBlowing: 2,
     votesFalse: 0,
-    createdIn: 2019,
+    created_at: 2019,
   },
   {
     id: 3,
@@ -37,9 +37,9 @@ export const initialFacts = [
     source: "https://en.wikipedia.org/wiki/Lisbon",
     category: "society",
     votesInteresting: 8,
-    votesMindblowing: 3,
+    votesMindBlowing: 3,
     votesFalse: 1,
-    createdIn: 2015,
+    created_at: 2015,
   },
 ];
 

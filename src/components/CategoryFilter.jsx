@@ -2,7 +2,7 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import { categoriesAtom } from "../recoil/facts.atom";
 
-const CategoryBtns = ({ setCategory }) => {
+const CategoryFilter = ({ setCategory }) => {
   const CATEGORIES = useRecoilValue(categoriesAtom);
 
   return (
@@ -15,7 +15,7 @@ const CategoryBtns = ({ setCategory }) => {
       {CATEGORIES.map((category, index) => (
         <li key={index} className="category ">
           <button
-            className="btn btn-category "
+            className="btn btn-category opacity-90"
             style={{ backgroundColor: category.color }}
             onClick={() => setCategory(category.name)}
           >
@@ -27,4 +27,4 @@ const CategoryBtns = ({ setCategory }) => {
   );
 };
 
-export default CategoryBtns;
+export default CategoryFilter;
