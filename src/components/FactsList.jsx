@@ -26,7 +26,7 @@ const FactsList = ({ category }) => {
         <h3 className="font-coiny uppercase text-sky-400 text-8xl text-center mt-[3rem]">
           Loading...
         </h3>
-      ) : !facts.length ? (
+      ) : !facts?.length ? (
         <h1>
           no facts in this category yet
           {!showForm && (
@@ -38,7 +38,7 @@ const FactsList = ({ category }) => {
             </span>
           )}
         </h1>
-      ) : facts.length && !factsQuery.isError ? (
+      ) : facts?.length && !factsQuery.isError ? (
         facts.map((fact, index) => <FactCard key={fact.id} fact={fact} />)
       ) : (
         factsQuery.isError && (
